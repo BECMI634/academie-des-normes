@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>L'Académie des Normes</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<header>
+<h1>🎓 L’Académie des Normes</h1>
+<p>Répare les documents et restaure les règles typographiques</p>
+</header>
+
+<nav>
+<button onclick="showScreen('map')">Carte</button>
+<button onclick="showScreen('training')">Entraînement</button>
+<button onclick="showScreen('profile')">Profil</button>
+</nav>
+
+<section id="map" class="screen">
+<h2>🗺 Carte de l’Académie</h2>
+
+<div class="map">
+
+<div class="level" onclick="loadLevel(1)">🏭 L'Imprimerie</div>
+<div class="level" onclick="loadLevel(2)">📚 Les Archives</div>
+<div class="level" onclick="loadLevel(3)">📮 Salle du courrier</div>
+<div class="level" onclick="loadLevel(4)">⚖ Tribunal des normes</div>
+
+</div>
+</section>
+
+<section id="training" class="screen hidden">
+<h2>🎮 Mission</h2>
+
+<div id="question"></div>
+<div id="answers"></div>
+<div id="feedback"></div>
+
+<button onclick="nextQuestion()">Question suivante</button>
+
+</section>
+
+<section id="profile" class="screen hidden">
+
+<h2>👤 Profil élève</h2>
+
+<p>Score : <span id="score">0</span></p>
+<p>Niveau : <span id="level">1</span></p>
+<p>Badges : <span id="badges">Aucun</span></p>
+
+</section>
+
+<script src="script.js"></script>
+
+</body>
+</html>

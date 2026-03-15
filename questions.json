@@ -1,0 +1,62 @@
+[
+  {
+    "level": 1,
+    "question": "Bonjour! Comment vas-tu?",
+    "answers": [
+      "Bonjour! Comment vas-tu?",
+      "Bonjour ! Comment vas-tu ?",
+      "Bonjour ! Comment vas-tu?"
+    ],
+    "correct": 1
+  },
+  {
+    "level": 1,
+    "question": "Attention:danger",
+    "answers": [
+      "Attention:danger",
+      "Attention : danger",
+      "Attention :danger"
+    ],
+    "correct": 1
+  },
+  {
+    "level": 2,
+    "question": "Total:25€",
+    "answers": [
+      "Total:25€",
+      "Total : 25 €",
+      "Total :25€"
+    ],
+    "correct": 1
+  },
+  {
+    "level": 2,
+    "question": "Réduction de 20%",
+    "answers": [
+      "20%",
+      "20 %",
+      "20  %"
+    ],
+    "correct": 1
+  },
+  {
+    "level": 3,
+    "question": "Objet:Demande d'information",
+    "answers": [
+      "Objet : Demande d'information",
+      "Objet: Demande d'information",
+      "Objet :Demande d'information"
+    ],
+    "correct": 0
+  },
+  {
+    "level": 4,
+    "question": "Il est 14:30",
+    "answers": [
+      "14:30",
+      "14 : 30",
+      "14: 30"
+    ],
+    "correct": 0
+  }
+]
