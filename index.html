@@ -1,226 +1,53 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>L'Académie des Normes — Prototype</title>
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="UTF-8">
+<title>L'Académie des Normes</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="app-shell">
-    <aside class="sidebar">
-      <div class="brand">
-        <div class="brand-icon">§</div>
-        <div>
-          <h1>L’Académie des Normes</h1>
-          <p>Prototype jouable</p>
-        </div>
-      </div>
 
-      <nav class="nav">
-        <button class="nav-btn active" data-screen="home">Accueil</button>
-        <button class="nav-btn" data-screen="map">Carte</button>
-        <button class="nav-btn" data-screen="training">Entraînement</button>
-        <button class="nav-btn" data-screen="dashboard">Tableau de bord</button>
-      </nav>
+<header>
+<h1>🎓 L’Académie des Normes</h1>
+<p>Mission : restaurer les règles typographiques</p>
+</header>
 
-      <section class="player-card">
-        <h2>Profil élève</h2>
-        <label class="input-label">
-          Prénom
-          <input id="playerName" type="text" value="Élève test" />
-        </label>
-        <div class="stats">
-          <div><span>Niveau</span><strong id="statLevel">1</strong></div>
-          <div><span>Points</span><strong id="statPoints">0</strong></div>
-          <div><span>Badges</span><strong id="statBadges">0</strong></div>
-        </div>
-      </section>
+<nav>
+<button onclick="showScreen('carte')">Carte</button>
+<button onclick="showScreen('entrainement')">Entraînement</button>
+<button onclick="showScreen('profil')">Profil élève</button>
+</nav>
 
-      <section class="rules-card">
-        <h2>Règles ciblées</h2>
-        <ul>
-          <li>Espaces avant <strong>: ; ? !</strong></li>
-          <li>Espaces avec <strong>€</strong> et <strong>%</strong></li>
-          <li>Parenthèses</li>
-          <li>Heures</li>
-          <li>Lettre professionnelle</li>
-        </ul>
-      </section>
-    </aside>
+<section id="carte" class="screen">
+<h2>🗺 Carte de l’Académie</h2>
+<div class="map">
+<button onclick="startLevel(1)">L’Imprimerie</button>
+<button onclick="startLevel(2)">Les Archives</button>
+<button onclick="startLevel(3)">Salle du courrier</button>
+</div>
+</section>
 
-    <main class="main">
-      <section id="screen-home" class="screen active">
-        <div class="hero card">
-          <div>
-            <p class="eyebrow">Mission narrative</p>
-            <h2>Les archives de l’Académie ont été sabotées.</h2>
-            <p>
-              Les espaces disparaissent, les signes de ponctuation se dérèglent et les lettres professionnelles
-              deviennent illisibles. Votre mission : restaurer les documents en réussissant les épreuves.
-            </p>
-            <div class="cta-row">
-              <button class="primary" id="startAdventure">Commencer l’aventure</button>
-              <button class="secondary" data-go="training">Mode entraînement</button>
-            </div>
-          </div>
-          <div class="dialogue-panel">
-            <div class="npc">Maître Typographus</div>
-            <p>
-              « Bienvenue, gardien. Chaque bonne correction restaure un fragment du Code des Normes. »
-            </p>
-          </div>
-        </div>
+<section id="entrainement" class="screen hidden">
+<h2>⚙ Entraînement</h2>
+<p>Corrige la phrase :</p>
 
-        <div class="grid two">
-          <article class="card">
-            <h3>Ce prototype contient</h3>
-            <ul class="feature-list">
-              <li>3 niveaux jouables</li>
-              <li>3 types de mini-jeux</li>
-              <li>feedback immédiat</li>
-              <li>points + badges</li>
-              <li>petit tableau de bord enseignant</li>
-            </ul>
-          </article>
-          <article class="card">
-            <h3>Vision complète ensuite</h3>
-            <ul class="feature-list">
-              <li>comptes élèves</li>
-              <li>carte complète à débloquer</li>
-              <li>missions sur lettre NBN</li>
-              <li>résultats par règle</li>
-              <li>banque d’exercices aléatoires</li>
-            </ul>
-          </article>
-        </div>
-      </section>
+<div id="question"></div>
 
-      <section id="screen-map" class="screen">
-        <div class="card">
-          <p class="eyebrow">Carte de progression</p>
-          <h2>Choisissez un lieu</h2>
-          <p>Chaque lieu contient une règle dominante. Les niveaux se débloquent progressivement.</p>
-        </div>
+<div id="answers"></div>
 
-        <div class="map-grid">
-          <button class="level-card unlocked" data-level="1">
-            <span class="level-tag">Niveau 1</span>
-            <strong>L’Imprimerie</strong>
-            <small>Espaces avant : ; ? !</small>
-          </button>
-          <button class="level-card locked" data-level="2" id="level2Btn">
-            <span class="level-tag">Niveau 2</span>
-            <strong>Les Archives</strong>
-            <small>€ % parenthèses</small>
-          </button>
-          <button class="level-card locked" data-level="3" id="level3Btn">
-            <span class="level-tag">Niveau 3</span>
-            <strong>Salle du courrier</strong>
-            <small>Lettre professionnelle</small>
-          </button>
-        </div>
+<div id="feedback"></div>
 
-        <div id="levelContainer" class="card level-container">
-          <h3>Sélectionnez un niveau</h3>
-          <p>Le défi s’affichera ici.</p>
-        </div>
-      </section>
+<button onclick="nextQuestion()">Question suivante</button>
+</section>
 
-      <section id="screen-training" class="screen">
-        <div class="card">
-          <p class="eyebrow">Révision libre</p>
-          <h2>Mode entraînement</h2>
-          <p>Choisissez une règle et lancez une question aléatoire.</p>
+<section id="profil" class="screen hidden">
+<h2>👤 Profil élève</h2>
+<p>Score : <span id="score">0</span></p>
+<p>Niveau atteint : <span id="level">1</span></p>
+</section>
 
-          <div class="training-controls">
-            <select id="trainingTopic">
-              <option value="double-signs">Ponctuation double</option>
-              <option value="symbols">Symboles € et %</option>
-              <option value="parentheses">Parenthèses</option>
-              <option value="time">Heures</option>
-            </select>
-            <button class="primary" id="generateTraining">Nouvelle question</button>
-          </div>
+<script src="script.js"></script>
 
-          <div id="trainingBox" class="training-box">
-            <p>Appuyez sur « Nouvelle question » pour commencer.</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="screen-dashboard" class="screen">
-        <div class="grid two">
-          <article class="card">
-            <p class="eyebrow">Suivi enseignant</p>
-            <h2>Vue rapide</h2>
-            <table>
-              <thead>
-                <tr><th>Élève</th><th>Progression</th><th>Point faible</th></tr>
-              </thead>
-              <tbody id="teacherTable">
-                <tr><td>Élève test</td><td>0 %</td><td>—</td></tr>
-                <tr><td>Emma</td><td>78 %</td><td>Espaces avec %</td></tr>
-                <tr><td>Lucas</td><td>63 %</td><td>Deux-points</td></tr>
-              </tbody>
-            </table>
-          </article>
-          <article class="card">
-            <p class="eyebrow">Bilan joueur</p>
-            <h2>Résumé actuel</h2>
-            <div id="summaryBox">
-              <p>Aucune mission terminée pour le moment.</p>
-            </div>
-          </article>
-        </div>
-      </section>
-    </main>
-  </div>
-
-  <template id="tpl-level-1">
-    <div class="challenge">
-      <p class="eyebrow">Niveau 1 — L’Imprimerie</p>
-      <h3>Réparer la phrase</h3>
-      <p class="challenge-text">Choisissez la phrase correctement espacée.</p>
-      <div class="options" data-correct="1">
-        <button class="option">Bonjour! Comment vas-tu ?</button>
-        <button class="option">Bonjour ! Comment vas-tu ?</button>
-        <button class="option">Bonjour ! Comment vas-tu?</button>
-      </div>
-      <div class="feedback"></div>
-    </div>
-  </template>
-
-  <template id="tpl-level-2">
-    <div class="challenge">
-      <p class="eyebrow">Niveau 2 — Les Archives</p>
-      <h3>Glisser la bonne correction</h3>
-      <p class="challenge-text">Quelle version respecte les espaces avec le symbole monétaire ?</p>
-      <div class="options" data-correct="2">
-        <button class="option">Montant :25€</button>
-        <button class="option">Montant: 25 €</button>
-        <button class="option">Montant : 25 €</button>
-      </div>
-      <div class="feedback"></div>
-    </div>
-  </template>
-
-  <template id="tpl-level-3">
-    <div class="challenge">
-      <p class="eyebrow">Niveau 3 — Salle du courrier</p>
-      <h3>Corriger la lettre</h3>
-      <p class="challenge-text">Cochez tous les éléments à corriger.</p>
-      <div class="letter-box">
-        <p><span class="mark" data-answer="true">Objet:</span><span class="mark" data-answer="false">Demande d'information</span></p>
-        <p><span class="mark" data-answer="true">Madame,Monsieur</span></p>
-        <p><span class="mark" data-answer="true">Le taux est de 25%.</span></p>
-        <p><span class="mark" data-answer="false">Nous vous remercions pour votre retour.</span></p>
-      </div>
-      <button class="primary" id="validateMarks">Valider</button>
-      <div class="feedback"></div>
-    </div>
-  </template>
-
-  <script src="script.js"></script>
 </body>
 </html>
